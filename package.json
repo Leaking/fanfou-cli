@@ -1,0 +1,45 @@
+{
+  "name": "fanfou",
+  "version": "0.1.0",
+  "description": "An LLM-friendly command line for the Fanfou (饭否) API, with a bundled agent skill.",
+  "type": "module",
+  "bin": {
+    "fanfou": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "skills",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "scripts": {
+    "dev": "node src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test 'test/**/*.test.ts'",
+    "install-skill": "node scripts/install-skill.mjs",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "fanfou",
+    "饭否",
+    "cli",
+    "llm",
+    "agent",
+    "oauth1"
+  ],
+  "license": "MIT",
+  "author": "Leaking",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leaking/fanfou-cli.git"
+  },
+  "homepage": "https://github.com/Leaking/fanfou-cli#readme",
+  "bugs": "https://github.com/Leaking/fanfou-cli/issues",
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.8.0"
+  }
+}
