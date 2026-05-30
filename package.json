@@ -9,7 +9,8 @@
   "files": [
     "dist",
     "skills",
-    "README.md"
+    "README.md",
+    "README.en.md"
   ],
   "engines": {
     "node": ">=22.6.0"
