@@ -1,6 +1,6 @@
 {
   "name": "fanfou",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An LLM-friendly command line for the Fanfou (饭否) API, with a bundled agent skill.",
   "type": "module",
   "bin": {

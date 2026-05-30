@@ -116,6 +116,10 @@ main()
       );
       process.exit(1);
     }
-    printError({ type: "error", message: (err as Error)?.message ?? String(err) }, format);
+    const baseMessage = (err as Error)?.message ?? String(err);
+    const cause = (err as { cause?: unknown })?.cause;
+    const causeMessage = cause instanceof Error ? cause.message : cause != null ? String(cause) : undefined;
+    const message = causeMessage ? `${baseMessage} (cause: ${causeMessage})` : baseMessage;
+    printError({ type: "error", message }, format);
     process.exit(1);
   });

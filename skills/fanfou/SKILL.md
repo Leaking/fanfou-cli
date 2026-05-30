@@ -106,6 +106,18 @@ as-is). Example: `fanfou +timeline --format table`.
   act on the live account — confirm intent, and prefer `--dry-run` to preview.
 - **Reading is safe**; writing posts to the real account. Don't post test/spam
   content to a user's real account without being asked.
+- **`"fetch failed"` is a transient network error, not a CLI bug.** It's Node's
+  undici wrapper for socket-level failures (ECONNRESET, DNS hiccup, TLS abort,
+  timeout). Fanfou throttles bursty requests to the **same endpoint** by
+  RST-ing the TCP connection — if you hammer e.g. `/statuses/user_timeline.json`
+  several times in a row, expect a couple of failures. **Wait ~5s and retry**;
+  don't escalate to "the API is broken" until you've retried at least twice.
+- **A user's `timeline user` may return `[]` even when `protected: false`.**
+  Some accounts (notably high-profile ones like `wangxing`) have an
+  account-level API privacy setting that hides their timeline from non-mutual
+  followers, while their profile (`user show`) still works normally. The empty
+  array is the server's answer, not a CLI bug — confirm by trying another user
+  you follow (whose timeline does return data).
 
 ## Endpoint coverage map (resource command → Fanfou API)
 
